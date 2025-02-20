@@ -77,7 +77,22 @@ public:
 		}
 		
 		// Función de búsqueda binaria iterativa
-		
+		int BinarySearchIterative(int target){
+            int left = 0;
+            int right = m_nCount -1;
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+                if (m_pVect[mid] == target){
+                    return mid;
+                }
+                if (m_pVect[mid] > target){
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            }
+            return -1;
+        }
 		
 		// Getter para obtener la cantidad de elementos en el vector
 		int GetCount() const 
@@ -113,12 +128,27 @@ int main() {
 	// Verificar si el elemento fue encontrado
 	if (result != -1) 
 	{
-		cout << "Elemento " << target << " encontrado en la posición: " << result << endl;
+		cout << "Elemento " << target << " encontrado en la posición (recursivo): " << result << endl;
 	} 
 	else 
 	{
 		cout << "Elemento " << target << " no encontrado." << endl;
 	}
+
+	// Busqueda Binaria Iterativa
+    // Buscar un elemento (ejemplo: 50)
+	target = 20;
+	result = gVect.BinarySearchIterative(target);
 	
+	// Verificar si el elemento fue encontrado
+	if (result != -1) 
+	{
+		cout << "Elemento " << target << " encontrado en la posición (iterativo): " << result << endl;
+	} 
+	else 
+	{
+		cout << "Elemento " << target << " no encontrado." << endl;
+	}
+
 	return 0;
 }
